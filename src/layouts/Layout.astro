@@ -1,0 +1,19 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} />
+  </head>
+  <body>
+    <main h-screen p-2 flex flex-col item-center justify-center flex-items-center>
+      <slot />
+    </main>
+  </body>
+</html>
