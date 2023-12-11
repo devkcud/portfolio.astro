@@ -14,6 +14,7 @@
     "@unocss/astro": "^0.58.0",
     "@unocss/reset": "^0.58.0",
     "astro": "^4.0.3",
+    "astro-icon": "^0.8.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
