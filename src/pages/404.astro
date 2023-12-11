@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Quote {
+  quote: string;
+  person: string;
+  emoji: string;
+}
+
+let cq: Quote | null = null; // Stands for Cute Quote
+
+let error: string = '404';
+
+if (Math.floor(Math.random() * 10) + 1 >= 9) {
+  error = '69';
+}
+
+try {
+  // This is my API :)
+  const response = await fetch("https://cutequote.onrender.com/");
+  const data = await response.json();
+  cq = data;
+} catch (error) {
+  console.log(error);
+  cq = {
+    quote: "No quotes for you",
+    person: "No one",
+    emoji: "😥",
+  }
+}
+
+const { quote, person, emoji } = cq!;
+---
+
+<Layout title={`I'm feeling like ${emoji}`}>
+  <h1 class="color-red-700 text-5xl fw-700">ERROR 404</h1>
+  <p><span class="italic">&quot;{quote}&quot;</span> - {person}</p>
+
+  <button class="m-8 py-1 px-6 rd bg-red-700 text-black transition-all hover:scale-[1.2] hover:rotate-4" onclick="window.history.back()">Go Back</button>
+</Layout>
