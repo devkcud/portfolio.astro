@@ -14,8 +14,10 @@ const { title } = Astro.props;
   </head>
   <body>
     <a href="https://github.com/devkcud/portfolio" class="flex justify-center transform-origin-l bg-white fixed w-40 pt-14 -top-24 -right-22 rotate-45 p-4">
-      <Icon name="mdi:github" class="w-10 h-10 color-black" />
+      <Icon name="mdi:github" size={40} class="color-black" />
     </a>
+
+    <a href="/" class="fixed top-2 left-2 op-30 transition ease hover:op-100 hover:color-blue-500"><Icon name="ic:round-home" size={40} /></a>
 
     <main class="h-screen p-2 flex flex-col item-center justify-center flex-items-center animate-fade-in">
       <slot />
