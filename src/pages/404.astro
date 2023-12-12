@@ -8,13 +8,15 @@ interface Quote {
   emoji: string;
 }
 
-let genQuote: Quote | null = {
-  quote: quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)],
-  person: quotesData.people[Math.floor(Math.random() * quotesData.people.length)],
-  emoji: quotesData.emojis[Math.floor(Math.random() * quotesData["emojis"].length)],
-};
+function getRandomQuote(): Quote {
+  return {
+    quote: quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)],
+    person: quotesData.people[Math.floor(Math.random() * quotesData.people.length)],
+    emoji: quotesData.emojis[Math.floor(Math.random() * quotesData.emojis.length)],
+  };
+}
 
-let { quote, person, emoji } = genQuote;
+let { quote, person, emoji }: Quote = getRandomQuote();
 ---
 
 <Layout title={`I'm feeling like ${emoji}`}>
