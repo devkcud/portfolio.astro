@@ -16,7 +16,7 @@ const { name, about, langs, deploy = "" } = Astro.props;
       </a>
 
       {deploy !== "" && (
-        <a href={deploy} class="flex items-center gap-2 px-2 bg-gray-900 text-sm fw-400 rounded-full">
+        <a href={deploy} class="flex items-center gap-2 px-2 bg-gray-900 text-sm fw-400 rounded-full outline-none hover:outline-white">
           <div class="w-2 h-2 bg-green-500 rounded-full pulse"></div>
           <span>Preview</span>
         </a>
