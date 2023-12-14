@@ -26,8 +26,8 @@ const { name, about, langs, deploy = "" } = Astro.props;
     <div class="flex gap-2 items-center">
       <Tooltips interactive={false} delay={[15, 15]} />
 
-      {langs.map((lang) => {
-        let url;
+      {langs.map((lang: any) => {
+        let url: any;
         let alt = lang.split("-")[0].includes("custom:") ? lang.split("-")[0].split(":")[1] : lang.split("-")[0];
 
         lang = lang.toLowerCase();
