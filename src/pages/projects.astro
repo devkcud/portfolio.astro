@@ -1,8 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Project from "@/components/Project.astro";
 
+  const projects = [
+    {
+      name: 'Portfolio',
+      about: 'This portfolio right here :)',
+      langs: ['custom:Astro', 'TypeScript', 'custom:UnoCSS']
+    },
+  ];
 ---
 
+
 <Layout title="Projects">
-  <h1>Мой проекты здесь</h1>
+    <section class="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] justify-center gap-6 mx-14">
+    {projects.map(project => (
+      <Project name={project.name} about={project.about} langs={project.langs} />
+    ))}
+  </section>
 </Layout>

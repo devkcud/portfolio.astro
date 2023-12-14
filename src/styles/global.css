@@ -13,3 +13,10 @@ body {
   background: #040404;
   color: #cfcdcb;
 }
+
+code {
+  padding: 0.25rem 0.5rem;
+  background: #1a1a1a;
+  color: #b7410e;
+  border-radius: 0.5rem;
+}

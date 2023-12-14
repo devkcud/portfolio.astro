@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon';
+import { Tooltips } from 'astro-tooltips';
+
+const langsToInvert = ['rust', 'gml'];
+
+const { name, about, langs } = Astro.props;
+---
+
+<div class="w-full flex flex-col gap-2 rounded shadow-2xl shadow-opacity-10 shadow-blue-500 p-8">
+  <header class="flex flex-justify-between">
+    <h1 class="text-5xl fw-800 transition ease hover:color-blue-500">
+      <a href={`https://github.com/devkcud/${name.split(' ').join('-')}`}>
+        {name}
+        <span><Icon name="ph:link-bold" size={24} class="inline op-30" /></span>
+      </a>
+    </h1>
+
+    <div class="flex gap-2 items-center">
+      <Tooltips interactive={false} delay={[15, 15]} />
+
+      {langs.map((lang) => {
+        let url;
+        let alt = lang.split('-')[0].includes('custom:') ? lang.split('-')[0].split(':')[1] : lang.split('-')[0];
+
+        lang = lang.toLowerCase();
+
+        const classes = ['w-6', 'h-6', 'object-contain'];
+
+        if (lang.includes('custom:')) {
+          lang = lang.split(':')[1];
+
+          url = `/langs/${lang}.svg`;
+        } else {
+          url = `https://raw.githubusercontent.com/devicons/devicon/master/icons/${lang.split('-')[0]}/${lang}`;
+
+          if (!lang.includes('-')) {
+            url += "-original";
+          }
+
+          url += ".svg";
+        }
+
+        if (langsToInvert.includes(lang.split('-')[0])) {
+          classes.push('invert');
+        }
+
+        return (
+          <img title={alt} data-tooltip-placement="top" src={url} alt={alt} class:list={[...classes]} />
+        );
+      })}
+    </div>
+  </header>
+
+  <p set:html={about} />
+</div>
