@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title={`I'm feeling like`}>
+<Layout title={`404: I'm feeling like`}>
   <h1 class="color-red-700 text-5xl fw-700">ERROR 404</h1>
   <p>&quot;<span id="quote" class="italic"></span>&quot; - <span id="person"></span></p>
 
@@ -10,16 +10,24 @@ import Layout from "@/layouts/Layout.astro";
 </Layout>
 
 <script>
-  try {
-    const response = await fetch("https://cutequote.onrender.com/");
-    var data = await response.json();
-  } catch (error) {
-    console.log(error);
-  }
+import quotesData from "@/assets/quoting.json";
 
-  let { quote, person, emoji } = data;
+interface Quote {
+  quote: string;
+  person: string;
+  emoji: string;
+}
+function getRandomQuote(): Quote {
+  return {
+    quote: quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)],
+    person: quotesData.people[Math.floor(Math.random() * quotesData.people.length)],
+    emoji: quotesData.emojis[Math.floor(Math.random() * quotesData.emojis.length)],
+  };
+}
 
-  document.title = `I'm feeling like ${emoji}`
-  document.getElementById("quote")!.innerHTML = quote;
-  document.getElementById("person")!.innerHTML = person;
+let { quote, person, emoji }: Quote = getRandomQuote();
+
+document.title = `404: I'm feeling like ${emoji}`;
+document.getElementById("quote")!.innerHTML = quote;
+document.getElementById("person")!.innerHTML = person;
 </script>
