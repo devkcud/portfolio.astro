@@ -1,19 +1,26 @@
 ---
-import { Icon } from 'astro-icon';
-import { Tooltips } from 'astro-tooltips';
+import { Icon } from "astro-icon";
+import { Tooltips } from "astro-tooltips";
 
-const langsToInvert = ['rust', 'gml'];
+const langsToInvert = ["rust", "gml"];
 
-const { name, about, langs } = Astro.props;
+const { name, about, langs, deploy = "" } = Astro.props;
 ---
 
 <div class="w-full flex flex-col gap-2 rounded shadow-2xl shadow-opacity-10 shadow-blue-500 p-8">
   <header class="flex flex-justify-between">
-    <h1 class="text-5xl fw-800 transition ease hover:color-blue-500">
-      <a href={`https://github.com/devkcud/${name.split(' ').join('-')}`}>
+    <h1 class="flex items-center gap-2 text-3xl fw-800 all:transition all:ease">
+      <a href={`https://github.com/devkcud/${name.split(" ").join("-")}`} class="hover:color-blue-500">
         {name}
         <span><Icon name="ph:link-bold" size={24} class="inline op-30" /></span>
       </a>
+
+      {deploy !== "" && (
+        <a href={deploy} class="flex items-center gap-2 px-2 bg-gray-900 text-sm fw-400 rounded-full">
+          <div class="w-2 h-2 bg-green-500 rounded-full pulse"></div>
+          <span>Preview</span>
+        </a>
+      )}
     </h1>
 
     <div class="flex gap-2 items-center">
@@ -21,28 +28,28 @@ const { name, about, langs } = Astro.props;
 
       {langs.map((lang) => {
         let url;
-        let alt = lang.split('-')[0].includes('custom:') ? lang.split('-')[0].split(':')[1] : lang.split('-')[0];
+        let alt = lang.split("-")[0].includes("custom:") ? lang.split("-")[0].split(":")[1] : lang.split("-")[0];
 
         lang = lang.toLowerCase();
 
-        const classes = ['w-6', 'h-6', 'object-contain'];
+        const classes = ["w-6", "h-6", "object-contain"];
 
-        if (lang.includes('custom:')) {
-          lang = lang.split(':')[1];
+        if (lang.includes("custom:")) {
+          lang = lang.split(":")[1];
 
           url = `/langs/${lang}.svg`;
         } else {
-          url = `https://raw.githubusercontent.com/devicons/devicon/master/icons/${lang.split('-')[0]}/${lang}`;
+          url = `https://raw.githubusercontent.com/devicons/devicon/master/icons/${lang.split("-")[0]}/${lang}`;
 
-          if (!lang.includes('-')) {
+          if (!lang.includes("-")) {
             url += "-original";
           }
 
           url += ".svg";
         }
 
-        if (langsToInvert.includes(lang.split('-')[0])) {
-          classes.push('invert');
+        if (langsToInvert.includes(lang.split("-")[0])) {
+          classes.push("invert");
         }
 
         return (
