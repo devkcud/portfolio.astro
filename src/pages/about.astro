@@ -95,12 +95,12 @@ import Layout from '@/layouts/Layout.astro';
 </Layout>
 
 <script>
-  const seriousButton = document.getElementById('serious-button');
-  let serious = false;
+  const seriousButton: any = document.getElementById('serious-button');
+  let serious: any = false;
 
-  const title = document.getElementById('title');
-  const playfulText = document.getElementById('playful');
-  const seriousText = document.getElementById('serious');
+  const title: any = document.getElementById('title');
+  const playfulText: any = document.getElementById('playful');
+  const seriousText: any = document.getElementById('serious');
 
   function toggleSeriousness() {
     serious = !serious;
